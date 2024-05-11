@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5 pt-3">
         <div class="row ms-1">
-            <div class="col-auto bg-info"></div>
+            <div class="col-auto bg-info pe-0"></div>
             <div class="col bg-light">
                 <p class="pt-4">Klik tombol <img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"> untuk memilih dosen pembimbing.</p>
             </div>
@@ -44,43 +44,71 @@
                         <th scope="row">1</th>
                         <td class="text-start">0606107401</td>
                         <td class="text-start">YANI PARTI ASTUTI, S.Si, M.Kom</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td class="text-start">0613128502</td>
                         <td class="text-start">DEFRI KURNIAWAN, M.Kom</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
                         <td class="text-start">0618038701</td>
                         <td class="text-start">ADHITYA NUGRAHA, S.Kom, M.CS</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
                         <td class="text-start">0625078504</td>
                         <td class="text-start">ARDYTHA LUTHFIARTA, M.Kom</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
                         <td class="text-start">0612029001</td>
                         <td class="text-start">EGIA ROSI SUBHIYAKTO, M.Kom</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">6</th>
                         <td class="text-start">0615127404</td>
                         <td class="text-start">AJIB SUSANTO, M.Kom</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">7</th>
                         <td class="text-start">0616088801</td>
                         <td class="text-start">DANANG WAHYU UTOMO, M.Kom</td>
-                        <td><img src="{{ asset('assets/buttonAksi.jpg') }}" alt="buttonAksi" width="30px"></td>
+                        <td>
+                            <button type="button" onclick="selectLecturer(this)" class="btn border-0">
+                                <img src="assets/buttonAksi.jpg" alt="buttonAksi" width="30px">
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -101,13 +129,32 @@
                     </li>
                 </ul>
             </nav>
-            <div class="row ms-1 mt-5">
-                <div class="col-auto bg-info"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="selected-lecturer-section" style="display: none;">
+            <div class="row ms-1 mt-4">
+                <div class="col-auto bg-info pe-0"></div>
                 <div class="col bg-light">
                     <p class="pt-4">Dosen yang dipilih</p>
                 </div>
             </div>
-            <div class="col mt-5">
+            <div class="col mt-5" id="selected-lecturer">
+                <!-- Data dosen yang dipilih akan ditampilkan di sini -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Fungsi untuk menampilkan data dosen yang dipilih
+        function selectLecturer(button) {
+            // Mendapatkan data dosen dari baris tempat tombol ditekan
+            var row = button.parentNode.parentNode;
+            var nidn = row.cells[1].textContent;
+            var nama = row.cells[2].textContent;
+
+            // Buat sebuah elemen tabel untuk data dosen yang dipilih
+            var selectedLecturerTable = `
                 <table class="table table-bordered">
                     <thead class="table-primary">
                         <tr class="text-center">
@@ -120,14 +167,28 @@
                     <tbody class="text-center">
                         <tr>
                             <th scope="row">1</th>
-                            <td class="text-start">0618038701</td>
-                            <td class="text-start">ADHITYA NUGRAHA, S.Kom, M.CS</td>
-                            <td><img src="{{ asset('assets/deleteButton.jpg') }}" alt="deleteButton" width="50px"></td>
+                            <td class="text-start">${nidn}</td>
+                            <td class="text-start">${nama}</td>
+                            <td>
+                                <button type="button" onclick="deselectLecturer()" class="btn border-0">
+                                    <img src="assets/deleteButton.jpg" alt="buttonAksi" width="50px">
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
+            `;
+
+            // Tampilkan bagian "Dosen yang dipilih" dan masukkan tabel data dosen yang dipilih ke dalam div dengan id "selected-lecturer"
+            document.getElementById('selected-lecturer-section').style.display = 'block';
+            document.getElementById('selected-lecturer').innerHTML = selectedLecturerTable;
+        }
+
+        // Fungsi untuk menyembunyikan data dosen yang dipilih
+        function deselectLecturer() {
+            // Sembunyikan bagian "Dosen yang dipilih"
+            document.getElementById('selected-lecturer-section').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
